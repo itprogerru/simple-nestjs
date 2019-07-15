@@ -43,6 +43,10 @@ export class TasksService {
 
   }
 
+  /**
+   * Удаление задачи
+   * @param id
+   */
   deleteTaskById(id: string): void {  // void если ничего не возвращает
     this.tasks = this.tasks.filter(task => task.id !== id);
   }
