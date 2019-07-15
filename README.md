@@ -74,7 +74,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
   Nest is [MIT licensed](LICENSE).
 
-#cli generate modele
+# cli generate
 Создает модуль глобавльно и привязывает к глобальному модулю
 
 `nest g module tasks`
@@ -87,3 +87,11 @@ post del get
 Создание сервиса cli
 
 `nest g service tasks --no-spec`
+
+
+Создание интерфейсов task.model enum описание констанст статуса.
+
+Для создание уникального id:
+
+`yarn add uuid`
+
