@@ -16,6 +16,15 @@ export class TasksService {
   }
 
   /**
+   * Получение задачи по task id
+   * @param id
+   * @return Task
+   */
+  getTaskById(id: string): Task {
+    return this.tasks.find(task => task.id === id);
+  }
+
+  /**
    * Создает задачу и пуляет её в масив задач и возвращает созданную данныую задачу
    * @param createTaskDto
    * @return Task
