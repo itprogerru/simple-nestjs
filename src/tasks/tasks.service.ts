@@ -42,4 +42,8 @@ export class TasksService {
     return task;
 
   }
+
+  deleteTaskById(id: string): void {  // void если ничего не возвращает
+    this.tasks = this.tasks.filter(task => task.id !== id);
+  }
 }
