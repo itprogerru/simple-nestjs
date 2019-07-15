@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.model';
+import { CreateTaskDto } from './dto/create-task.dto';
 
 /**
  * Контроллер REST API запросов tasks
@@ -15,10 +16,7 @@ export class TasksController {
   }
 
   @Post()
-  createTask(
-    @Body('title') title: string, // Описание поля который придет в body и название переменной которая передасться в функцию
-    @Body('description') description: string,
-  ): Task {
-    return this.taskService.createTask(title, description);
+  createTask(@Body() createTaskDto: CreateTaskDto): Task {
+    return this.taskService.createTask(createTaskDto);
   }
 }
