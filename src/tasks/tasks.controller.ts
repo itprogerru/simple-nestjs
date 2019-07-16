@@ -18,7 +18,7 @@ export class TasksController {
   }
 
   @Get()
-  getTasks(@Query() filterDto: GetTasksFilterDto): Task[] { // описание интерфейса в task
+  getTasks(@Query(ValidationPipe) filterDto: GetTasksFilterDto): Task[] { // описание интерфейса в task
     if (Object.keys(filterDto).length) {
       return this.taskService.getTaskWithFilters(filterDto);
     } else {
