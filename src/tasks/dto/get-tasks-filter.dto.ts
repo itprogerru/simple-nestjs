@@ -1,5 +1,6 @@
-import { TaskStatus } from '../task.model';
+
 import { IsIn, IsNotEmpty, IsOptional } from 'class-validator';
+import { TaskStatus } from '../task-status.enum';
 
 export class GetTasksFilterDto {
   @IsOptional() // если есть то должен удовлетвоять требуовонаю из массива status, Опционально - если есть то валидация если нет то хуй с ним.
