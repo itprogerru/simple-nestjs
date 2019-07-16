@@ -69,8 +69,9 @@ export class TasksService {
    * Удаление задачи
    * @param id
    */
-  deleteTaskById(id: string): void {  // void если ничего не возвращает
-    this.tasks = this.tasks.filter(task => task.id !== id);
+  deleteTaskById(id: string): void {// void если ничего не возвращает
+    const found = this.getTaskById(id);
+    this.tasks = this.tasks.filter(task => task.id !== found.id);
   }
 
   updateTaskStatusById(id: string, status: TaskStatus) {
