@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task, TaskStatus } from './task.model';
 import { CreateTaskDto } from './dto/create-task.dto';
+import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 
 /**
  * Контроллер REST API запросов tasks
@@ -10,9 +11,18 @@ import { CreateTaskDto } from './dto/create-task.dto';
 export class TasksController {
   constructor(private taskService: TasksService) {}
 
-  @Get()
+  @Get('/all')
   getAllTasks(): Task[] { // описание интерфейса в task
     return this.taskService.getAllTasks();
+  }
+
+  @Get()
+  getTasks(@Query() filterDto: GetTasksFilterDto): Task[] { // описание интерфейса в task
+    if (Object.keys(filterDto).length) {
+      return this.taskService.getTaskWithFilters(filterDto);
+    } else {
+      return this.taskService.getAllTasks();
+    }
   }
 
   @Get('/:id')
