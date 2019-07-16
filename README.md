@@ -95,3 +95,8 @@ post del get
 
 `yarn add uuid`
 
+Добавление валидатора для pipe
+
+`yarn add class-validator class-transformer`
+
+https://github.com/typestack/class-validator
