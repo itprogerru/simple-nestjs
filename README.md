@@ -103,4 +103,5 @@ https://github.com/typestack/class-validator
 
 jwt and passport
 
-`yarn add @nestjs/jwt @nestjs/passport passport passport-jwt`
+`yarn add @nestjs/jwt @nestjs/passport passport passport-jwt @types/passport-jwt
+`
