@@ -100,3 +100,7 @@ post del get
 `yarn add class-validator class-transformer`
 
 https://github.com/typestack/class-validator
+
+jwt and passport
+
+`yarn add @nestjs/jwt @nestjs/passport passport passport-jwt`
