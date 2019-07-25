@@ -11,6 +11,7 @@ const mockTaskRepository = () => ({
   getTasks: jest.fn(),
   findOne: jest.fn(),
   createTask: jest.fn(),
+  delete: jest.fn(),
 });
 
 describe('taskService', () => {
@@ -71,6 +72,35 @@ describe('taskService', () => {
       const result = await tasksService.createTask(createTaskDto, mockUser);
       expect(taskRepository.createTask).toHaveBeenCalledWith(createTaskDto, mockUser);
       expect(result).toEqual('someTask');
+    });
+  })
+
+  describe('DeleteTask',  () => {
+    it('call taskReposititoru.deleteTask() to delete a task', async () => {
+      taskRepository.delete.mockResolvedValue({affected: 1});
+      expect(taskRepository.delete).not.toHaveBeenCalled();
+      await tasksService.deleteTaskById(1, mockUser);
+      expect(taskRepository.delete).toHaveBeenCalledWith({id: 1, userId: mockUser.id});
+    });
+    it('thrwos an error as task is not found', () => {
+      taskRepository.delete.mockResolvedValue({affected: 0});
+      expect(tasksService.deleteTaskById(1, mockUser)).rejects.toThrow();
+    });
+  });
+
+  describe('UpdateTask',  () => {
+    it('update task status', async () => {
+      const save = jest.fn().mockResolvedValue(true);
+      tasksService.getTaskById = jest.fn().mockResolvedValue({
+        status: TaskStatus.OPEN,
+        save,
+      });
+      expect(tasksService.getTaskById).not.toHaveBeenCalled();
+      expect(save).not.toHaveBeenCalled();
+      const result = await tasksService.updateTaskStatusById(1, TaskStatus.DONE, mockUser);
+      expect(tasksService.getTaskById).toHaveBeenCalled();
+      expect(save).toHaveBeenCalled();
+      expect(result.status).toEqual(TaskStatus.DONE);
     });
   })
 });
