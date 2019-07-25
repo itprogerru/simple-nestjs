@@ -62,7 +62,5 @@ describe('frindslist', () => {
     it('throw an error', ()=> {
       expect(() => friendsList.removeFriend('jork').toThrow('test'));
     });
-
   })
-
 })
